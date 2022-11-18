@@ -1,4 +1,4 @@
-import { NEWS_FAILED, NEWS_GOT, NEWS_REQUESTED } from '../constants';
+import { NEWS_REJECTED, NEWS_SUCCESS, NEWS_REQUESTED } from '../constants';
 
 const defaultState = {
   news: [],
@@ -10,11 +10,11 @@ function newsReducer(state = defaultState, action = {}) {
   switch (action.type) {
     case NEWS_REQUESTED:
       return { ...state, isLoading: true };
-    case NEWS_GOT:
+    case NEWS_SUCCESS:
       return {
         ...state, isLoading: false, news: action.payload,
       };
-    case NEWS_FAILED:
+    case NEWS_REJECTED:
       return {
         ...state, isLoading: false, news: [], error: action.error,
       };

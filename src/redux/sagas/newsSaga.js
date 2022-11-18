@@ -1,13 +1,13 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 
 import getNews from '../../api/getNews';
-import { newsGot } from '../actions/news';
+import { newsSuccess } from '../actions/news';
 import { NEWS_REQUESTED } from '../constants';
 
 function* worker() {
   try {
     const { data } = yield call(getNews);
-    yield put(newsGot(data));
+    yield put(newsSuccess(data));
   } catch (err) {
     yield put(err.message);
   }

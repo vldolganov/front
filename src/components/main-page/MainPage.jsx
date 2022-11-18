@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import News from '../../components/news-card/News';
-import Alert from '../../components/alert/Alert';
+import News from '../news-card/News';
+import Alert from '../alert/Alert';
 import { getNewsRequest } from '../../redux/actions/news';
-import Loader from '../../components/loader/Loader';
+import Loader from '../loader/Loader';
 
 import './MainPage.css';
 
