@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { ACTION_TYPES } from '../../constants/action-types';
+import { ACTION_TYPES } from '../../constants/actionTypes';
 
 const defaultState = {
   news: [],

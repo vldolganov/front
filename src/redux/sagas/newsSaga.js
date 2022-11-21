@@ -2,7 +2,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 
 import getNews from '../../api/getNews';
 import { newsSuccess } from '../actions/news';
-import { GET_NEWS_REQUESTED } from '../../constants/action-types';
+import { GET_NEWS_REQUESTED } from '../../constants/actionTypes';
 
 function* worker() {
   try {

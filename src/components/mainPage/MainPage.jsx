@@ -1,7 +1,7 @@
 import { React, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import News from '../news-card/News';
+import News from '../newsCard/News';
 import Alert from '../alert/Alert';
 import getNewsRequest from '../../redux/actions/news';
 import Loader from '../loader/Loader';
