@@ -1,4 +1,4 @@
-import { NEWS_REJECTED, NEWS_SUCCESS, NEWS_REQUESTED } from '../constants';
+import { NEWS_REJECTED, NEWS_SUCCESS, NEWS_REQUESTED } from '../../constants/constants';
 
 const defaultState = {
   news: [],

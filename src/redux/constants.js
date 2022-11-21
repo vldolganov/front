@@ -1,3 +1,0 @@
-export const NEWS_REQUESTED = 'NEWS_REQUESTED';
-export const NEWS_SUCCESS = 'NEWS_SUCCESS';
-export const NEWS_REJECTED = 'NEWS_REJECTED';
