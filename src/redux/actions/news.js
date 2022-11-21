@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-import { ACTION_TYPE } from '../../constants/constants';
+import { ACTION_TYPE } from '../../constants/action-types';
 
 export const getNewsRequest = createAction(ACTION_TYPE.GET_NEWS_REQUESTED);
 export const newsSuccess = createAction(ACTION_TYPE.GET_NEWS_SUCCESS);

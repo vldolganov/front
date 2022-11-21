@@ -2,7 +2,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 
 import getNews from '../../api/getNews';
 import { newsSuccess } from '../actions/news';
-import { NEWS_REQUESTED } from '../constants';
+import { GET_NEWS_REQUESTED } from '../../constants/action-types';
 
 function* worker() {
   try {
@@ -14,7 +14,7 @@ function* worker() {
 }
 
 function* watcher() {
-  yield takeLatest(NEWS_REQUESTED, worker);
+  yield takeLatest(GET_NEWS_REQUESTED, worker);
 }
 
 export default watcher;

@@ -1,4 +1,6 @@
-import { NEWS_REJECTED, NEWS_SUCCESS, NEWS_REQUESTED } from '../../constants/constants';
+import { memo } from 'react';
+
+import { ACTION_TYPES } from '../../constants/action-types';
 
 const defaultState = {
   news: [],
@@ -8,13 +10,13 @@ const defaultState = {
 
 function newsReducer(state = defaultState, action = {}) {
   switch (action.type) {
-    case NEWS_REQUESTED:
+    case ACTION_TYPES.GET_NEWS_REQUESTED:
       return { ...state, isLoading: true };
-    case NEWS_SUCCESS:
+    case ACTION_TYPES.GET_NEWS_SUCCESS:
       return {
         ...state, isLoading: false, news: action.payload,
       };
-    case NEWS_REJECTED:
+    case ACTION_TYPES.GET_NEWS_REJECTED:
       return {
         ...state, isLoading: false, news: [], error: action.error,
       };
@@ -23,4 +25,4 @@ function newsReducer(state = defaultState, action = {}) {
   }
 }
 
-export default newsReducer;
+export default memo(newsReducer);
