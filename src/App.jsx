@@ -1,7 +1,7 @@
-import { React, memo } from 'react';
+import React, { memo } from 'react';
 
 import Header from './components/header/Header';
-import MainPage from './components/main-page/MainPage';
+import { MainPage } from './components/mainPage/MainPage';
 
 function App() {
   return (

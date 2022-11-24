@@ -1,10 +1,10 @@
-import { React, useEffect, memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import News from '../newsCard/News';
 import Alert from '../alert/Alert';
-import getNewsRequest from '../../redux/actions/news';
 import Loader from '../loader/Loader';
+import getNewsRequest from '../../redux/actions/news';
 
 import './MainPage.css';
 
@@ -31,4 +31,5 @@ function MainPage() {
     </div>
   );
 }
+
 export default memo(MainPage);
