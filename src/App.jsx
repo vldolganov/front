@@ -9,7 +9,6 @@ function App() {
       <Header />
       <MainPage />
     </div>
-
   );
 }
 export default memo(App);

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import NewsList from '../NewsList/NewsList';
 import Alert from '../alert/Alert';
 import Loader from '../loader/Loader';
+
 import { getNewsRequest } from '../../redux/actions/news';
 
 import './MainPage.css';
@@ -21,13 +22,13 @@ function MainPage() {
   if (!news.length) {
     return <Alert message="News not found" severity="info" />;
   }
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
   return (
-    <div>
-      { isLoading ? <Loader />
-        : (
-          <NewsList news={news} />
-        )}
-    </div>
+    <NewsList news={news} />
   );
 }
 
