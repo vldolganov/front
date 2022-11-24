@@ -1,6 +1,4 @@
-import { memo } from 'react';
-
-import { ACTION_TYPES } from '../../constants/actionTypes';
+import ACTION_TYPES from '../../constants/actionTypes';
 
 const defaultState = {
   news: [],
@@ -25,4 +23,4 @@ function newsReducer(state = defaultState, action = {}) {
   }
 }
 
-export default memo(newsReducer);
+export default newsReducer;

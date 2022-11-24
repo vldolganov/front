@@ -1,6 +1,5 @@
 import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { memo } from 'react';
 
 import rootSaga from './sagas/rootSaga';
 import reducer from './reducers/rootReducer';
@@ -14,4 +13,4 @@ const store = createStore(
 );
 sagaMiddleWare.run(rootSaga);
 
-export default memo(store);
+export default store;

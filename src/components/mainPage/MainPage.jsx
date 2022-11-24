@@ -1,10 +1,10 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import News from '../newsCard/News';
+import NewsList from '../NewsList/NewsList';
 import Alert from '../alert/Alert';
 import Loader from '../loader/Loader';
-import getNewsRequest from '../../redux/actions/news';
+import { getNewsRequest } from '../../redux/actions/news';
 
 import './MainPage.css';
 
@@ -15,10 +15,6 @@ function MainPage() {
   useEffect(() => {
     dispatch(getNewsRequest());
   }, []);
-
-  if (isLoading) {
-    return <Loader />;
-  }
   if (error) {
     return <Alert message={error} severity="error" />;
   }
@@ -26,8 +22,11 @@ function MainPage() {
     return <Alert message="News not found" severity="info" />;
   }
   return (
-    <div className="main-page">
-      {news.map((post) => <News post={post} />)}
+    <div>
+      { isLoading ? <Loader />
+        : (
+          <NewsList news={news} />
+        )}
     </div>
   );
 }
