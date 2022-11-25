@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
+
+import Header from './components/header/Header';
+import MainPage from './components/mainPage/MainPage';
 
 function App() {
   return (
-    <div />
+    <div>
+      <Header />
+      <MainPage />
+    </div>
   );
 }
-export default App;
+
+export default memo(App);

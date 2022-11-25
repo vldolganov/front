@@ -1,0 +1,8 @@
+.main-page {
+  display: flex;
+  justify-content: center;
+  column-gap: 255px;
+  padding-top: 15px;
+  flex-wrap: wrap;
+  background-color: aquamarine;
+}
