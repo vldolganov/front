@@ -1,9 +1,9 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import NewsList from '../NewsList/NewsList';
-import Alert from '../alert/Alert';
-import Loader from '../loader/Loader';
+import NewsList from '../../components/NewsList/NewsList';
+import Alert from '../../components/alert/Alert';
+import Loader from '../../components/loader/Loader';
 
 import { getNewsRequest } from '../../redux/actions/news';
 
