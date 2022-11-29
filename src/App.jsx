@@ -22,7 +22,6 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/signup" element={<AuthPage />} />
         <Route path="/auth/signin" element={<AuthPage />} />
-        <Route path="/auth" Naviga/>
       </Routes>
     </div>
   );
