@@ -12,7 +12,6 @@ import './MainPage.css';
 function MainPage() {
   const { news, isLoading, error } = useSelector((state) => state.news);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getNewsRequest());
   }, []);
@@ -33,4 +32,3 @@ function MainPage() {
 }
 
 export default memo(MainPage);
-

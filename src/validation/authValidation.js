@@ -1,29 +1,35 @@
 import * as Yup from 'yup';
 
-const SignUpSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(1, 'Name is too short')
-    .max(40, 'Name is too Long!')
-    .required('Required'),
-  login: Yup.string()
-    .min(2, 'Login is too Short!')
-    .max(20, 'Login is too long')
-    .required('Required'),
-  password: Yup.string()
-    .min(2, 'Password is too short')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-});
+const SignUpSchema = {
+  name: Yup
+    .string('Enter you name')
+    .min(1, 'Name should be minimum 1')
+    .required('Name is required'),
+  email: Yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  login: Yup
+    .string('Enter your login')
+    .min(4, 'Login should be of minimum 4 characters length')
+    .required('Login is required'),
+  password: Yup
+    .string('Enter your password')
+    .min(4, 'Password should be of minimum 4 characters length')
+    .required('Password is required'),
+};
 
-const SignInSchema = Yup.object().shape({
-  login: Yup.string()
-    .min(2, 'Login is too Short!')
-    .max(20, 'Login is too long')
-    .required('Required'),
-  password: Yup.string()
-    .min(2, 'Password is too short')
-    .required('Required'),
-});
+const SignInSchema = {
+  login: Yup
+    .string('Enter your login')
+    .min(4, 'Login should be of minimum 4 characters length')
+    .required('Login is required'),
+  password: Yup
+    .string('Enter your password')
+    .min(4, 'Password should be of minimum 4 characters length')
+    .required('Password is required'),
+};
 
-export { SignInSchema, SignUpSchema };
+const getSchemaForAuth = (modalType) => Yup.object(modalType === 'SignIn' ? SignInSchema : SignUpSchema);
 
+export { getSchemaForAuth, SignInSchema, SignUpSchema };

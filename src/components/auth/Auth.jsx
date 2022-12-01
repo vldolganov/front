@@ -3,11 +3,20 @@ import { PropTypes } from 'prop-types';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 
+import { TextField } from '@mui/material';
+
 import { authSignUpRequest, authSignInRequest } from '../../redux/actions/auth';
+import { getSchemaForAuth } from '../../validation/authValidation';
 import './Auth.css';
 
-function Auth({ array, textOnButton, condition }) {
+function Auth({
+  array,
+  textOnButton,
+  condition,
+}) {
   const dispatch = useDispatch();
+  const validateSchema = getSchemaForAuth(condition);
+  const isLoading = condition === 'SignUp';
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -15,6 +24,7 @@ function Auth({ array, textOnButton, condition }) {
       login: '',
       password: '',
     },
+    validateSchema,
     onSubmit: (values) => {
       if (condition) {
         dispatch(authSignUpRequest(values));
@@ -26,18 +36,57 @@ function Auth({ array, textOnButton, condition }) {
   return (
     <div className="main">
       <form onSubmit={formik.handleSubmit} className="form">
-        {array.map((elem) => (
-          <label htmlFor="name">
-            {elem}
-            <input
-              id={elem}
-              name={elem}
-              type={elem}
-              onChange={formik.handleChange}
-              value={formik.values[elem]}
-            />
-          </label>
-        ))}
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="Name"
+          hidden={isLoading}
+          value={formik.values.name}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
+
+        <TextField
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          hidden={isLoading}
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+
+        <TextField
+          fullWidth
+          id="login"
+          name="login"
+          label="Login"
+          hidden={isLoading}
+          value={formik.values.login}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          error={formik.touched.login && Boolean(formik.errors.login)}
+          helperText={formik.touched.login && formik.errors.login}
+        />
+
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          label="password"
+          hidden={isLoading}
+          value={formik.values.password}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
         <button type="submit">{textOnButton}</button>
       </form>
     </div>

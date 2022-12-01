@@ -16,7 +16,7 @@ function newsReducer(state = defaultState, action = {}) {
       };
     case ACTION_TYPES.GET_NEWS_REJECTED:
       return {
-        ...state, isLoading: false, news: [], error: action.payload,
+        ...state, isLoading: false, error: action.payload,
       };
     default:
       return state;
@@ -24,4 +24,3 @@ function newsReducer(state = defaultState, action = {}) {
 }
 
 export default newsReducer;
-

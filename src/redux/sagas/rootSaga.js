@@ -5,7 +5,8 @@ import authSaga from './authSaga';
 
 function* rootSaga() {
   yield all([
-    newsSaga(), authSaga(),
+    newsSaga(),
+    authSaga(),
   ]);
 }
 

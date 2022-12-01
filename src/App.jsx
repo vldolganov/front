@@ -4,13 +4,13 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import MainPage from './pages/mainPage/MainPage';
-
+import getData from './localstorage/localstorageFunction';
 import { authCheckRequest } from './redux/actions/auth';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (localStorage.getItem('jwt')) {
+    if (getData) {
       dispatch(authCheckRequest());
     }
   }, []);
@@ -25,4 +25,3 @@ function App() {
 }
 
 export default memo(App);
-

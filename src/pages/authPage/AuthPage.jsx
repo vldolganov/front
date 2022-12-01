@@ -16,4 +16,3 @@ function AuthPage({ modalType }) {
 }
 
 export default memo(AuthPage);
-

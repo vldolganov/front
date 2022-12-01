@@ -22,4 +22,3 @@ NewsList.propTypes = {
 };
 
 export default memo(NewsList);
-

@@ -8,9 +8,9 @@ function* signIn(action) {
   try {
     const { data } = yield call(AuthSignIn, action.payload);
     localStorage.setItem('jwt', data.token);
-    yield put(authSuccess(data));
-  } catch (err) {
-    yield put(err.message);
+    yield put(authSuccess(data.user));
+  } catch (error) {
+    yield put(error.message);
   }
 }
 
@@ -18,19 +18,18 @@ function* signUp(action) {
   try {
     const { data } = yield call(AuthSignUp, action.payload);
     localStorage.setItem('jwt', data.token);
-    yield put(authSuccess(data));
-  } catch (err) {
-    yield put(err.message);
+    yield put(authSuccess(data.user));
+  } catch (error) {
+    yield put(error.message);
   }
 }
 
 function* checkToken() {
   try {
     const { data } = yield call(AuthCheckToken);
-    localStorage.getItem('jwt');
     yield put(authSuccess(data));
-  } catch (err) {
-    yield put(err.message);
+  } catch (error) {
+    yield put(error.message);
   }
 }
 

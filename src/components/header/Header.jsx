@@ -1,5 +1,6 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
   AppBar,
@@ -7,57 +8,58 @@ import {
   Toolbar,
   Typography,
   Button,
-  IconButton,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 
 import Modal from '../modal/Modal';
 
+import { modalOpen, modalClose } from '../../redux/actions/modal';
 import { authLogOut } from '../../redux/actions/auth';
+
 import './Header.css';
 
 function Header() {
-  const { user, isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const [modalType, setModalType] = useState({ modal: '', open: false });
-
-  const openModal = (type) => {
-    setModalType({ modalType: type, open: true });
-  };
-
-  const closeModal = () => {
-    setModalType({ ...modalType, open: false });
-  };
+  const { user, isAuth } = useSelector((state) => state.auth);
 
   const logOut = () => {
     dispatch(authLogOut());
+  };
+
+  const closeModalWindow = () => {
+    dispatch(modalClose());
+  };
+
+  const openSignIn = () => {
+    dispatch(modalOpen('signIn'));
+  };
+
+  const openSignUp = () => {
+    dispatch(modalOpen('signUp'));
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Новости
+            <Link to="/" className="header-name">
+              Новости
+            </Link>
           </Typography>
           <div>
-            <Button color="inherit" onClick={openModal('signIn')}>{ isAuth ? `${user.login}` : 'Войти'}</Button>
-            <Button onClick={isAuth ? logOut : openModal('signUp')} color="inherit">{ isAuth ? 'Выйти' : 'Регистрация' }</Button>
+            <Button color="inherit" onClick={isAuth ? () => {} : openSignIn}>
+              {isAuth ? (
+                <Link to={`/user/${user.id}`} className="user-name">
+                  {user.name}
+                </Link>
+              ) : 'Войти'}
+            </Button>
+            <Button color="inherit" onClick={isAuth ? logOut : openSignUp}>{isAuth ? 'Выйти' : 'Регистрация'}</Button>
           </div>
         </Toolbar>
       </AppBar>
-      <Modal modalType={modalType} modalClose={closeModal} />
+      <Modal modalClose={closeModalWindow} />
     </Box>
   );
 }
 export default memo(Header);
-

@@ -1,4 +1,4 @@
-.header-button{
+.header-button, .user-name, .header-name{
   text-decoration: none;
   color:white;
 }
