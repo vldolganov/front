@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import MainPage from './pages/mainPage/MainPage';
-import AuthPage from './pages/authPage/AuthPage';
 
 import { authCheckRequest } from './redux/actions/auth';
 
@@ -20,8 +19,6 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth/signup" element={<AuthPage />} />
-        <Route path="/auth/signin" element={<AuthPage />} />
       </Routes>
     </div>
   );

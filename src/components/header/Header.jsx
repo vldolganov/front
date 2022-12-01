@@ -1,5 +1,4 @@
-import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -12,13 +11,27 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import './Header.css';
+import Modal from '../modal/Modal';
+
 import { authLogOut } from '../../redux/actions/auth';
-import Loader from '../loader/Loader';
+import './Header.css';
 
 function Header() {
   const { user, isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [modalType, setModalType] = useState({ modal: '', open: false });
+
+  const openModal = (type) => {
+    setModalType({ modalType: type, open: true });
+  };
+
+  const closeModal = () => {
+    setModalType({ ...modalType, open: false });
+  };
+
+  const logOut = () => {
+    dispatch(authLogOut());
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -37,15 +50,12 @@ function Header() {
             Новости
           </Typography>
           <div>
-            <Link to={isAuth ? '/' : '/auth/signin'} className="header-button">
-              <Button color="inherit">{ isAuth ? `${user.login}` : 'Войти'}</Button>
-            </Link>
-            <Link to={isAuth ? '/' : '/auth/signup'} className="header-button">
-              <Button onClick={() => dispatch(authLogOut())} color="inherit">{ isAuth ? 'Выйти' : 'Регистрация' }</Button>
-            </Link>
+            <Button color="inherit" onClick={openModal('signIn')}>{ isAuth ? `${user.login}` : 'Войти'}</Button>
+            <Button onClick={isAuth ? logOut : openModal('signUp')} color="inherit">{ isAuth ? 'Выйти' : 'Регистрация' }</Button>
           </div>
         </Toolbar>
       </AppBar>
+      <Modal modalType={modalType} modalClose={closeModal} />
     </Box>
   );
 }
