@@ -25,3 +25,4 @@ function authReducer(state = defaultState, action = {}) {
 }
 
 export default authReducer;
+

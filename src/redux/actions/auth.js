@@ -9,3 +9,4 @@ export const authError = createAction(ACTION_TYPE.AUTH_ERROR);
 export const authCheckRequest = createAction(ACTION_TYPE.AUTH_CHECK_REQUEST);
 export const authSignInRequest = createAction(ACTION_TYPE.AUTH_SIGNIN_REQUEST);
 export const authSignUpRequest = createAction(ACTION_TYPE.AUTH_SIGNUP_REQUEST);
+

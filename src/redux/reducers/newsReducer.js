@@ -24,3 +24,4 @@ function newsReducer(state = defaultState, action = {}) {
 }
 
 export default newsReducer;
+

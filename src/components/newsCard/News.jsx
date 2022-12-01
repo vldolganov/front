@@ -71,3 +71,4 @@ NewsCard.propTypes = {
 };
 
 export default memo(NewsCard);
+

@@ -14,3 +14,4 @@ function Modal({ modalType: { modal, open }, modalClose }) {
 }
 
 export default Modal;
+
