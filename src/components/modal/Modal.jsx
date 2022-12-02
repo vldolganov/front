@@ -2,12 +2,10 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-
+import {
+  Modal, Box, Dialog, DialogContent,
+} from '@mui/material';
 import Auth from '../auth/Auth';
-
-import { signInType, signUpType } from '../../constants/authType';
 
 import './Modal.css';
 
@@ -25,26 +23,26 @@ const style = {
 
 function BasicModal({ modalClose }) {
   const { open, modalType } = useSelector((state) => state.auth);
-  const path = modalType === 'signUp';
-  const array = path ? signUpType : signInType;
-  const textOnButton = path ? 'signUp' : 'signIn';
 
   return (
     <div>
-      <Modal
+      <Dialog
         open={open}
         onClose={modalClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-describedby="dialog-dialog-description"
+        fullWidth="true"
+        disableEscapeKeyDown="false"
       >
-        <Box sx={style}>
-          <Auth
-            array={array}
-            textOnButton={textOnButton}
-            condition={path}
-          />
-        </Box>
-      </Modal>
+        <DialogContent className={modalType}>
+          <Box sx={style} className="box">
+            <Auth
+              modalType={modalType}
+            />
+          </Box>
+        </DialogContent>
+
+      </Dialog>
     </div>
   );
 }

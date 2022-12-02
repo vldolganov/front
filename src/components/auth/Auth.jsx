@@ -6,17 +6,16 @@ import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
 
 import { authSignUpRequest, authSignInRequest } from '../../redux/actions/auth';
-import { getSchemaForAuth } from '../../validation/authValidation';
+import getSchemaForAuth from '../../validation/authValidation';
 import './Auth.css';
+import { signInType, signUpType } from '../../constants/authType';
 
 function Auth({
-  array,
-  textOnButton,
-  condition,
+  modalType,
 }) {
   const dispatch = useDispatch();
-  const validateSchema = getSchemaForAuth(condition);
-  const isLoading = condition === 'SignUp';
+  const arrayType = modalType === 'signUp' ? signUpType : signInType
+  const validationSchema = getSchemaForAuth(modalType);
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -24,11 +23,11 @@ function Auth({
       login: '',
       password: '',
     },
-    validateSchema,
+    validationSchema,
     onSubmit: (values) => {
-      if (condition) {
+      if (modalType === 'signUp') {
         dispatch(authSignUpRequest(values));
-      } else {
+      } else if (modalType === 'signIn') {
         dispatch(authSignInRequest(values));
       }
     },
@@ -36,69 +35,30 @@ function Auth({
   return (
     <div className="main">
       <form onSubmit={formik.handleSubmit} className="form">
-        <TextField
-          fullWidth
-          id="name"
-          name="name"
-          label="Name"
-          hidden={isLoading}
-          value={formik.values.name}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
+        {arrayType.map((elem) => (
+          <TextField
+            fullWidth
+            id={elem}
+            name={elem}
+            label={elem}
+            type={elem}
+            value={formik.values[elem]}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            error={formik.touched[elem] && Boolean(formik.errors[elem])}
+            helperText={formik.touched[elem] && formik.errors[elem]}
 
-        <TextField
-          fullWidth
-          id="email"
-          name="email"
-          label="Email"
-          hidden={isLoading}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
+          />
+        ))}
 
-        <TextField
-          fullWidth
-          id="login"
-          name="login"
-          label="Login"
-          hidden={isLoading}
-          value={formik.values.login}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.touched.login && Boolean(formik.errors.login)}
-          helperText={formik.touched.login && formik.errors.login}
-        />
-
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="password"
-          hidden={isLoading}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <button type="submit">{textOnButton}</button>
+        <button type="submit">{modalType}</button>
       </form>
     </div>
   );
 }
 
 Auth.propTypes = {
-  array: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
-  ).isRequired,
-  textOnButton: PropTypes.string.isRequired,
-  condition: PropTypes.bool.isRequired,
+  modalType: PropTypes.string.isRequired,
 };
 
 export default Auth;

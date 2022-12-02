@@ -30,6 +30,6 @@ const SignInSchema = {
     .required('Password is required'),
 };
 
-const getSchemaForAuth = (modalType) => Yup.object(modalType === 'SignIn' ? SignInSchema : SignUpSchema);
+const getSchemaForAuth = (modalType) => Yup.object(modalType === 'signIn' ? SignInSchema : SignUpSchema);
 
-export { getSchemaForAuth, SignInSchema, SignUpSchema };
+export default getSchemaForAuth;
