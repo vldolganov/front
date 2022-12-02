@@ -1,0 +1,16 @@
+.user-card {
+  background-color: aqua !important;
+  width: 170px;
+  margin-top: 0.2px;
+  border-radius: 10px;
+  padding-left: 17px;
+  padding-top: 39px;
+  padding-right: 17px;
+  width: 100vh;
+}
+
+.avatar{
+  border-radius: 15px;
+  width: 15px;
+  height: 200px;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PropTypes } from 'prop-types';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ function Auth({
   modalType,
 }) {
   const dispatch = useDispatch();
-  const arrayType = modalType === 'signUp' ? signUpType : signInType
+  const arrayType = modalType === 'signUp' ? signUpType : signInType;
   const validationSchema = getSchemaForAuth(modalType);
   const formik = useFormik({
     initialValues: {
@@ -61,4 +61,4 @@ Auth.propTypes = {
   modalType: PropTypes.string.isRequired,
 };
 
-export default Auth;
+export default memo(Auth);

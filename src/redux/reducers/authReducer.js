@@ -4,7 +4,7 @@ const defaultState = {
   user: {},
   isAuth: false,
   error: '',
-  open: '',
+  open: false,
   modalType: '',
 };
 
