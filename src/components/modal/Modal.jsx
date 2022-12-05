@@ -3,46 +3,29 @@ import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import {
-  Box, Dialog, DialogContent,
+  Dialog,
+  DialogContent,
 } from '@mui/material';
 import Auth from '../auth/Auth';
 
 import './Modal.css';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 function BasicModal({ modalClose }) {
   const { open, modalType } = useSelector((state) => state.auth);
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={modalClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="dialog-dialog-description"
-        fullWidth
-      >
-        <DialogContent className={modalType}>
-          <Box sx={style} className="box">
-            <Auth
-              modalType={modalType}
-            />
-          </Box>
-        </DialogContent>
+    <Dialog
+      open={open}
+      onClose={modalClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="dialog-dialog-description"
+      fullWidth
+    >
+      <DialogContent className={modalType}>
+        <Auth modalType={modalType} />
+      </DialogContent>
+    </Dialog>
 
-      </Dialog>
-    </div>
   );
 }
 

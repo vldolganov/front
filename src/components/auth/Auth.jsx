@@ -7,8 +7,9 @@ import { TextField } from '@mui/material';
 
 import { authSignUpRequest, authSignInRequest } from '../../redux/actions/auth';
 import getSchemaForAuth from '../../validation/authValidation';
-import './Auth.css';
 import { signInType, signUpType } from '../../constants/authType';
+
+import './Auth.css';
 
 function Auth({
   modalType,
@@ -42,12 +43,12 @@ function Auth({
             name={elem}
             label={elem}
             type={elem}
+            key={elem.id}
             value={formik.values[elem]}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             error={formik.touched[elem] && Boolean(formik.errors[elem])}
             helperText={formik.touched[elem] && formik.errors[elem]}
-
           />
         ))}
 
