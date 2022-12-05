@@ -20,7 +20,11 @@ function NewsCard({
     content,
     picture,
     tags,
-    user: { login, avatar, id },
+  },
+  user: {
+    login,
+    avatar,
+    id,
   },
 }) {
   return (
@@ -29,7 +33,7 @@ function NewsCard({
         avatar={(
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={`${avatar}`} />
         )}
-        title={(<Link to={`/user/${id}`} className="user-name-news">{login}</Link>)}
+        title={(<Link to={`/user/${id}`} className="user-name-news">{login }</Link>)}
       />
       <CardMedia
         component="img"
@@ -59,11 +63,11 @@ NewsCard.propTypes = {
     content: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      login: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-    }).isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 

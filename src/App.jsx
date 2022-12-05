@@ -16,7 +16,7 @@ function App() {
     }
   }, []);
   return (
-    <div>
+    <div className="all-elem">
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />

@@ -3,16 +3,16 @@ import ACTION_TYPES from '../../constants/actionTypes';
 const defaultState = {
   user: {},
   isAuth: false,
-  error: '',
-  open: '',
-  modalType: '',
+  error: null,
+  open: false,
+  modalType: null,
 };
 
 function authReducer(state = defaultState, action = {}) {
   switch (action.type) {
     case ACTION_TYPES.AUTH_SUCCESS:
       return {
-        ...state, isAuth: true, user: action.payload, open: false, modalType: '',
+        ...state, isAuth: true, user: action.payload, open: false, modalType: null,
       };
     case ACTION_TYPES.AUTH_LOG_OUT:
       localStorage.removeItem('jwt');
@@ -27,7 +27,7 @@ function authReducer(state = defaultState, action = {}) {
       return { open: true, modalType: action.payload };
     case ACTION_TYPES.MODAL_CLOSE:
       return {
-        open: false, modalType: '',
+        isAuth: true, open: false, modalType: null,
       };
     default:
       return state;

@@ -1,5 +1,15 @@
 import * as Yup from 'yup';
 
+const password = Yup
+  .string('Enter your password')
+  .min(4, 'Password should be of minimum 4 characters length')
+  .required('Password is required');
+
+const login = Yup
+  .string('Enter your login')
+  .min(3, 'Login should be of minimum 3 characters length')
+  .required('Login is required');
+
 const SignUpSchema = {
   name: Yup
     .string('Enter you name')
@@ -9,25 +19,13 @@ const SignUpSchema = {
     .string('Enter your email')
     .email('Enter a valid email')
     .required('Email is required'),
-  login: Yup
-    .string('Enter your login')
-    .min(4, 'Login should be of minimum 4 characters length')
-    .required('Login is required'),
-  password: Yup
-    .string('Enter your password')
-    .min(4, 'Password should be of minimum 4 characters length')
-    .required('Password is required'),
+  login,
+  password,
 };
 
 const SignInSchema = {
-  login: Yup
-    .string('Enter your login')
-    .min(4, 'Login should be of minimum 4 characters length')
-    .required('Login is required'),
-  password: Yup
-    .string('Enter your password')
-    .min(4, 'Password should be of minimum 4 characters length')
-    .required('Password is required'),
+  login,
+  password,
 };
 
 const getSchemaForAuth = (modalType) => Yup.object(modalType === 'signIn' ? SignInSchema : SignUpSchema);

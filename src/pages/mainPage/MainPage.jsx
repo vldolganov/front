@@ -1,7 +1,7 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import NewsList from '../../components/NewsList/NewsList';
+import News from '../../components/newsCard/News';
 import Alert from '../../components/alert/Alert';
 import Loader from '../../components/loader/Loader';
 
@@ -11,6 +11,7 @@ import './MainPage.css';
 
 function MainPage() {
   const { news, isLoading, error } = useSelector((state) => state.news);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsRequest());
@@ -27,7 +28,9 @@ function MainPage() {
     );
   }
   return (
-    <NewsList news={news} />
+    <div className="main-page">
+      {news.map((post) => <News post={post} key={post.id} user={post.user} />)}
+    </div>
   );
 }
 
