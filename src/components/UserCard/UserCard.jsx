@@ -37,16 +37,11 @@ function UserCard(
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <>
-            Login:
-            {' '}
-            {login}
-            {' '}
-          </>
-          <>
-            Email:
-            {email}
-          </>
+          Login: &nbsp;
+          {login}
+          <br />
+          Email:
+          {email}
 
         </Typography>
       </CardContent>

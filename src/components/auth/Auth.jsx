@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -7,9 +7,8 @@ import { TextField } from '@mui/material';
 
 import { authSignUpRequest, authSignInRequest } from '../../redux/actions/auth';
 import getSchemaForAuth from '../../validation/authValidation';
-import { signInType, signUpType } from '../../constants/authType';
-
 import './Auth.css';
+import { signInType, signUpType } from '../../constants/authType';
 
 function Auth({
   modalType,
@@ -43,12 +42,13 @@ function Auth({
             name={elem}
             label={elem}
             type={elem}
-            key={elem.id}
+            key={elem}
             value={formik.values[elem]}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             error={formik.touched[elem] && Boolean(formik.errors[elem])}
             helperText={formik.touched[elem] && formik.errors[elem]}
+
           />
         ))}
 
@@ -62,4 +62,4 @@ Auth.propTypes = {
   modalType: PropTypes.string.isRequired,
 };
 
-export default memo(Auth);
+export default Auth;

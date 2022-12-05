@@ -14,18 +14,21 @@ function BasicModal({ modalClose }) {
   const { open, modalType } = useSelector((state) => state.auth);
 
   return (
-    <Dialog
-      open={open}
-      onClose={modalClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="dialog-dialog-description"
-      fullWidth
-    >
-      <DialogContent className={modalType}>
-        <Auth modalType={modalType} />
-      </DialogContent>
-    </Dialog>
-
+    <div>
+      <Dialog
+        open={open}
+        onClose={modalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="dialog-dialog-description"
+        fullWidth
+      >
+        <DialogContent className={modalType}>
+          <Auth
+            modalType={modalType}
+          />
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 }
 

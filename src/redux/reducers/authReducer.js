@@ -27,7 +27,7 @@ function authReducer(state = defaultState, action = {}) {
       return { open: true, modalType: action.payload };
     case ACTION_TYPES.MODAL_CLOSE:
       return {
-        isAuth: true, open: false, modalType: null,
+        open: false, modalType: null,
       };
     default:
       return state;

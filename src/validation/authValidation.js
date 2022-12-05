@@ -2,12 +2,13 @@ import * as Yup from 'yup';
 
 const password = Yup
   .string('Enter your password')
-  .min(4, 'Password should be of minimum 4 characters length')
+  .min(3, 'Password should be of minimum 3 characters length')
   .required('Password is required');
 
 const login = Yup
-  .string('Enter your login')
-  .min(3, 'Login should be of minimum 3 characters length')
+  .string('Enter your password')
+  .min(4, 'Login should be of minimum 4 characters length')
+  .max(50, 'Login is too long')
   .required('Login is required');
 
 const SignUpSchema = {
