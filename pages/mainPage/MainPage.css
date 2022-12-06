@@ -1,0 +1,16 @@
+.main-page{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  column-gap: 255px;
+  row-gap: 72px;
+  padding-top: 15px;
+  flex-wrap: wrap;
+  background-color: aquamarine;
+}
+
+.user-page{
+  background-color: aquamarine;
+
+}
+
