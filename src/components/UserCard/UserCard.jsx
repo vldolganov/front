@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
 import { PropTypes } from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
   Card, CardActions, CardContent, CardMedia, Button, Typography,
 } from '@mui/material';
+
+import { modalOpen, modalClose } from '../../redux/actions/modal';
+import UserModal from '../modal/UserModal/UserModal';
 
 import './UserCard.css';
 
@@ -19,9 +22,17 @@ function UserCard(
     },
   },
 ) {
-  const user = useSelector((state) => state.auth);
-  const { id } = useParams();
-  const authUserId = user.user.id;
+  const dispatch = useDispatch();
+
+  const closeModalWindow = () => {
+    dispatch(modalClose());
+  };
+
+  const openModal = () => {
+    dispatch(modalOpen('add'));
+  };
+  const { user: { id } } = useSelector((state) => state.auth);
+  const pathId = useParams();
 
   return (
     <Card sx={{ maxWidth: 345 }} className="user-card">
@@ -46,8 +57,17 @@ function UserCard(
         </Typography>
       </CardContent>
       <CardActions>
-        {authUserId === Number(id) ? <Button variant="contained">Edit profile</Button> : ''}
+        { id === Number(pathId.id)
+          ? (
+            <div className="profile-buttons">
+              <Button variant="contained">Edit profile</Button>
+              <Button variant="contained" onClick={openModal}>Add News</Button>
+            </div>
+          )
+          : ''}
       </CardActions>
+      <UserModal modalClose={closeModalWindow} />
+
     </Card>
   );
 }

@@ -11,15 +11,19 @@ const login = Yup
   .max(50, 'Login is too long')
   .required('Login is required');
 
+const email = Yup
+  .string('Enter your email')
+  .email('Enter a valid email')
+  .required('Email is required');
+
+const name = Yup
+  .string('Enter you name')
+  .min(1, 'Name should be minimum 1')
+  .required('Name is required');
+
 const SignUpSchema = {
-  name: Yup
-    .string('Enter you name')
-    .min(1, 'Name should be minimum 1')
-    .required('Name is required'),
-  email: Yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
+  name,
+  email,
   login,
   password,
 };

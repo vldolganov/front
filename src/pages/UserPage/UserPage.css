@@ -8,4 +8,5 @@
   flex-wrap: wrap;
   column-gap: 100px;
   justify-content: center;
+  row-gap: 50px;
 }

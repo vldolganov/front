@@ -10,7 +10,7 @@ import {
   Button,
 } from '@mui/material';
 
-import Modal from '../modal/Modal';
+import Modal from '../modal/AuthModal/Modal';
 
 import { modalOpen, modalClose } from '../../redux/actions/modal';
 import { authLogOut } from '../../redux/actions/auth';
@@ -25,16 +25,16 @@ function Header() {
     dispatch(authLogOut());
   };
 
-  const closeModalWindow = () => {
-    dispatch(modalClose());
-  };
-
   const openSignIn = () => {
     dispatch(modalOpen('signIn'));
   };
 
   const openSignUp = () => {
     dispatch(modalOpen('signUp'));
+  };
+
+  const closeModalWindow = () => {
+    dispatch(modalClose());
   };
 
   return (

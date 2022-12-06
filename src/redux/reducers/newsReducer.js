@@ -4,15 +4,17 @@ const defaultState = {
   news: [],
   isLoading: false,
   error: '',
+  open: false,
+  modalType: null,
 };
 
 function newsReducer(state = defaultState, action = {}) {
   switch (action.type) {
-    case ACTION_TYPES.GET_NEWS_REQUESTED:
+    case ACTION_TYPES.GET_NEWS_REQUESTED || ACTION_TYPES.ADD_NEWS_REQUESTED:
       return { ...state, isLoading: true };
     case ACTION_TYPES.GET_NEWS_SUCCESS:
       return {
-        ...state, isLoading: false, news: action.payload,
+        ...state, isLoading: false, news: action.payload, open: false, modalType: null,
       };
     case ACTION_TYPES.GET_NEWS_REJECTED:
       return {
