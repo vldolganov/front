@@ -4,7 +4,7 @@ import getUser from '../../api/getUser';
 import { userSuccess } from '../actions/user';
 import ACTION_TYPES from '../../constants/actionTypes';
 
-function* worker({ payload }) {
+function* userWorker({ payload }) {
   try {
     const { data } = yield call(getUser, payload);
     yield put(userSuccess(data));
@@ -14,7 +14,7 @@ function* worker({ payload }) {
 }
 
 function* watcher() {
-  yield takeLatest(ACTION_TYPES.GET_USER_REQUESTED, worker);
+  yield takeLatest(ACTION_TYPES.GET_USER_REQUESTED, userWorker);
 }
 
 export default watcher;

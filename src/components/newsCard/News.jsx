@@ -39,7 +39,7 @@ function NewsCard({
         component="img"
         height="194"
         image={picture}
-        alt="Paella dish"
+        alt=""
       />
       <CardContent>
         <Typography gutterBottom variant="h3" component="div">

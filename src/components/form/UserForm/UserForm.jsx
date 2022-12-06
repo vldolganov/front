@@ -5,31 +5,54 @@ import { useDispatch } from 'react-redux';
 
 import { TextField } from '@mui/material';
 
-import { authSignUpRequest, authSignInRequest } from '../../redux/actions/auth';
-import getSchemaForAuth from '../../validation/authValidation';
-import './Auth.css';
-import { signInType, signUpType } from '../../constants/authType';
+import { addNewsRequest } from '../../../redux/actions/news';
+import getSchemaForUserPage from '../../../validation/userProfileValidation';
+import {
+  addNewsType,
+  editProfileType,
+  signInType,
+  signUpType,
+} from '../../../constants/modalType';
+import { modalClose } from '../../../redux/actions/modal';
 
-function Auth({
+import './UserForm.css';
+
+function UserForm({
   modalType,
 }) {
   const dispatch = useDispatch();
-  const arrayType = modalType === 'signUp' ? signUpType : signInType;
-  const validationSchema = getSchemaForAuth(modalType);
+  const chooseModalType = () => {
+    if (modalType === 'add') {
+      return addNewsType;
+    } if (modalType === 'edit') {
+      return editProfileType;
+    } if (modalType === 'signIn') {
+      return signInType;
+    }
+    return signUpType;
+  };
+  const arrayType = chooseModalType();
+  const validationSchema = getSchemaForUserPage(modalType);
+  function closeModalWindow() {
+    dispatch(modalClose());
+  }
   const formik = useFormik({
     initialValues: {
-      name: '',
+      title: '',
+      content: '',
+      tags: '',
       email: '',
+      name: '',
       login: '',
-      password: '',
     },
     validationSchema,
     onSubmit: (values) => {
-      if (modalType === 'signUp') {
-        dispatch(authSignUpRequest(values));
-      } else if (modalType === 'signIn') {
-        dispatch(authSignInRequest(values));
+      if (modalType === 'add') {
+        dispatch(addNewsRequest(values));
+      } else if (modalType === 'edit') {
+        console.log('edit will be soon');
       }
+      closeModalWindow();
     },
   });
   return (
@@ -48,18 +71,17 @@ function Auth({
             onChange={formik.handleChange}
             error={formik.touched[elem] && Boolean(formik.errors[elem])}
             helperText={formik.touched[elem] && formik.errors[elem]}
-
           />
         ))}
-
+        <input type="file" />
         <button type="submit">{modalType}</button>
       </form>
     </div>
   );
 }
 
-Auth.propTypes = {
+UserForm.propTypes = {
   modalType: PropTypes.string.isRequired,
 };
 
-export default Auth;
+export default UserForm;
