@@ -12,7 +12,7 @@ import {
 } from '@mui/material/';
 import { red } from '@mui/material/colors';
 
-import './News.css';
+import './NewsCard.css';
 
 function NewsCard({
   post: {
@@ -39,7 +39,7 @@ function NewsCard({
         component="img"
         height="194"
         image={picture}
-        alt="Paella dish"
+        alt=""
       />
       <CardContent>
         <Typography gutterBottom variant="h3" component="div">

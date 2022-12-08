@@ -1,12 +1,12 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { authCheckRequest } from './redux/actions/auth';
 
-import Header from './components/header/Header';
-import MainPage from './pages/mainPage/MainPage';
+import Header from './components/Header/Header';
+import MainPage from './pages/MainPage/MainPage';
 import UserPage from './pages/UserPage/UserPage';
 import getData from './utils/localstorage';
-import { authCheckRequest } from './redux/actions/auth';
 
 function App() {
   const dispatch = useDispatch();

@@ -4,8 +4,6 @@ const defaultState = {
   user: {},
   isAuth: false,
   error: null,
-  open: false,
-  modalType: null,
 };
 
 function authReducer(state = defaultState, action = {}) {
@@ -22,12 +20,6 @@ function authReducer(state = defaultState, action = {}) {
     case ACTION_TYPES.AUTH_ERROR:
       return {
         ...state, isAuth: false, error: action.payload,
-      };
-    case ACTION_TYPES.MODAL_OPEN:
-      return { open: true, modalType: action.payload };
-    case ACTION_TYPES.MODAL_CLOSE:
-      return {
-        open: false, modalType: null,
       };
     default:
       return state;
