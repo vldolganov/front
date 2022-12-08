@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: grid;
+  justify-content: center;
+  width: 204px;
+  align-items: center;
+  justify-items: center;
+}

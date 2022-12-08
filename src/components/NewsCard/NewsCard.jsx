@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import {
   Card,
@@ -7,11 +8,11 @@ import {
   CardMedia,
   CardContent,
   Avatar,
-  IconButton,
   Typography,
 } from '@mui/material/';
 import { red } from '@mui/material/colors';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import './NewsCard.css';
 
 function NewsCard({
   post: {
@@ -19,30 +20,26 @@ function NewsCard({
     content,
     picture,
     tags,
-    createdAt,
+  },
+  user: {
+    login,
+    avatar,
+    id,
   },
 }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className="news-card">
       <CardHeader
         avatar={(
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {picture}
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={`${avatar}`} />
         )}
-        action={(
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        )}
-        title="Shrimp and Chorizo Paella"
-        subheader={createdAt}
+        title={(<Link to={`/user/${id}`} className="user-name-news">{login }</Link>)}
       />
       <CardMedia
         component="img"
         height="194"
         image={picture}
-        alt="Paella dish"
+        alt=""
       />
       <CardContent>
         <Typography gutterBottom variant="h3" component="div">
@@ -66,7 +63,11 @@ NewsCard.propTypes = {
     content: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 
