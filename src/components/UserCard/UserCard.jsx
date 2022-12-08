@@ -4,11 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  Card, CardActions, CardContent, CardMedia, Button, Typography,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
 } from '@mui/material';
 
 import { modalOpen, modalClose } from '../../redux/actions/modal';
-import UserModal from '../modal/UserModal/UserModal';
+import UserModal from '../Modal/UserModal/UserModal';
 
 import './UserCard.css';
 
@@ -57,7 +62,7 @@ function UserCard(
         </Typography>
       </CardContent>
       <CardActions>
-        { id === Number(pathId.id)
+        {id === Number(pathId.id)
           ? (
             <div className="profile-buttons">
               <Button variant="contained">Edit profile</Button>
