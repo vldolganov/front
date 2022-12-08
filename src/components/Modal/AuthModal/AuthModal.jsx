@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import Form from '../../form/AuthForm/Form';
 
-import './Modal.css';
+import './AuthModal.css';
 
 function BasicModal({ modalClose }) {
   const { open, modalType } = useSelector((state) => state.modal);

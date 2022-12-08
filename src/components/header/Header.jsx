@@ -10,7 +10,7 @@ import {
   Button,
 } from '@mui/material';
 
-import Modal from '../modal/AuthModal/Modal';
+import Modal from '../Modal/AuthModal/AuthModal';
 
 import { modalOpen, modalClose } from '../../redux/actions/modal';
 import { authLogOut } from '../../redux/actions/auth';

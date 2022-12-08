@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import UserCard from '../../components/UserCard/UserCard';
-import Alert from '../../components/alert/Alert';
-import Loader from '../../components/loader/Loader';
-import News from '../../components/newsCard/News';
+import Alert from '../../components/Alert/Alert';
+import Loader from '../../components/Loader/Loader';
+import News from '../../components/NewsCard/NewsCard';
 
 import { getUserRequest } from '../../redux/actions/user';
 
